@@ -1,0 +1,7 @@
+streamlit
+feedparser
+requests
+pandas
+openai
+st-gsheets-connection
+gspread
