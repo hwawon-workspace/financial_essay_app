@@ -17,6 +17,7 @@ import datetime
 import random
 from openai import OpenAI
 import concurrent.futures
+from zoneinfo import ZoneInfo
 
 
 client = OpenAI(
@@ -174,9 +175,10 @@ def dart_to_text(df):
 
 WEEKDAY_KR = ["월", "화", "수", "목", "금", "토", "일"]
 
+KST = ZoneInfo("Asia/Seoul")
 
 def get_today_institution():
-    today = WEEKDAY_KR[datetime.datetime.now().weekday()]
+    today = WEEKDAY_KR[datetime.datetime.now(KST).weekday()]
     for name, info in INSTITUTIONS.items():
         if today in info["days"]:
             return name, info
@@ -410,7 +412,7 @@ def append_history(date_str, institution, question, user_answer, grading_result=
 
 st.set_page_config(page_title="금융공기업 논술 트레이너", layout="wide")
 page = st.sidebar.radio("메뉴", ["오늘의 논술 연습", "나의 논술 히스토리"])
-today_str = datetime.date.today().isoformat()
+today_str = datetime.date.today(KST).date().isoformat()
 
 if page == "오늘의 논술 연습":
     st.title("금융공기업·은행 논술 트레이너")
