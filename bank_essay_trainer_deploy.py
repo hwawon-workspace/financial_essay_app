@@ -412,7 +412,7 @@ def append_history(date_str, institution, question, user_answer, grading_result=
 
 st.set_page_config(page_title="금융공기업 논술 트레이너", layout="wide")
 page = st.sidebar.radio("메뉴", ["오늘의 논술 연습", "나의 논술 히스토리"])
-today_str = datetime.date.today(KST).date().isoformat()
+today_str = datetime.datetime.now(KST).date().isoformat()
 
 if page == "오늘의 논술 연습":
     st.title("금융공기업·은행 논술 트레이너")
